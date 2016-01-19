@@ -1,0 +1,124 @@
+.btn-container {
+    margin-bottom: 50px;
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    background: red;
+    cursor: inherit;
+    display: block;
+}
+input[readonly] {
+    background-color: white !important;
+    cursor: text !important;
+}
+.video {
+    width: 100%;
+}
+.video video {
+    width: 100%;
+}
+.table > tbody > tr > td {
+    text-align: center;
+    vertical-align: middle;
+}
+.table.table-padding > tbody > tr > td {
+    line-height: 3;
+}
+.table input {
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
+th {
+    text-align: center;
+}
+.fa {
+    color: #428bca;
+    font-size: 28px;
+}
+h1 {
+    font-size: 22px;
+}
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#wrapper.toggled {
+    padding-left: 40%;
+}
+#sidebar-wrapper {
+    border-right: 1px solid #ccc;
+    z-index: 1000;
+    position: fixed;
+    left: 40%;
+    width: 0;
+    height: 100%;
+    margin-left: -40%;
+    overflow-y: auto;
+    background: #f5f5f5;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#wrapper.toggled #sidebar-wrapper {
+    width: 40%;
+    padding: 0;
+}
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -40%;
+}
+
+/* Sidebar Styles */
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 40%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 40%;
+    }
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+    #sidebar-wrapper {
+        width: 40%;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
