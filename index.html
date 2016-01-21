@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-ng-app="meuApp">
+<html lang="pt-br" data-ng-app="app">
 <head>
 	<meta charset="UTF-8">
 	<title>Quantificação</title>
@@ -12,95 +12,29 @@
 
 	<div id="wrapper">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper" class="container-fluid">
-        	<h1>Configurações</h1>
-            <div class="row">
-            	<table class="table">
-            		<tr>
-            			<th class="col-xs-4">Evento</th>
-            			<th class="col-xs-1">Tempo</th>
-            			<th class="col-xs-2">Tecla</th>
-            		</tr>
-            		<tr data-ng-repeat="item in eventos">
-            			<td>
-            				<input type="text" data-ng-model="item.nome">
-        				</td>
-        				<td>
-            				<input type="checkbox" data-ng-model="item.tempo">
-        				</td>
-        				<td>
-        					<div data-ng-show="item.tempo">
-	            				<div class="col-xs-6">
-									<label>Iniciar</label><br>
-									<input type="text" data-ng-model="item.config.tecla">
-								</div>
+        <!-- Lateral -->
+        <div data-ng-include="'html/lateral.html'"></div>
 
-								<div class="col-xs-6">
-									<label>Parar</label><br>
-									<input type="text" data-ng-model="item.config.teclaFim">
-								</div>
-        					</div>
-        					<div data-ng-hide="item.tempo">
-								<div class="col-xs-12">
-									<input type="text" data-ng-model="item.config.tecla"><br>
-								</div>
-        					</div>
-        				</td>
-            		</tr>
-            	</table>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<button class="btn btn-primary" data-ng-click="adicionar()">Adicionar novo</button>
-				</div>
-			</div>
-		</div>
-
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
+        <!-- Conteúdo -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
             	<div class="btn-container">
-                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" data-ng-click="toggleBotao()"><span data-ng-bind="textoBotao"></span> as configurações</a>
+                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" data-ng-click="toggleBotao()">
+                    	<span data-ng-bind="textoBotao"></span> as configurações
+                    </a>
+
+                    <button data-ng-show="mostrarTela" class="btn btn-primary" data-ng-click="toggleHistorico()">
+                    	Histórico
+                    </button>
                 </div>
-                <div class="row" data-ng-show="mostrar">
+                <div class="row" data-ng-show="mostrarTela">
                 	<div class="col-xs-6">
-                		<table class="table table-padding">
-		            		<tr>
-		            			<th class="col-xs-4">Evento</th>
-		            			<th class="col-xs-2">Tecla</th>
-		            			<th class="col-xs-4">Resultado</th>
-		            			<th class="col-xs-2"></th>
-		            		</tr>
-		            		<tr data-ng-repeat="item in eventos">
-		            			<td data-ng-show="item.nome !== ''">
-		            				{{ item.nome }}
-		        				</td>
-		        				<td data-ng-show="item.nome !== ''">
-		        					<div data-ng-show="item.tempo">
-		        						{{ item.config.tecla }} / {{ item.config.teclaFim }}
-		        					</div>
-		        					<div data-ng-hide="item.tempo">
-										{{ item.config.tecla }}
-		        					</div>
-		        				</td>
-		        				<td data-ng-show="item.nome !== ''">
-		            				<div class="col-xs-12" data-ng-show="item.tempo">
-										{{ item.config.duracao | number:2 }} segundo(s)
-									</div>
-									<div class="col-xs-12" data-ng-hide="item.tempo">
-										{{ item.config.contador }}
-									</div>
-		        				</td>
-		        				<td data-ng-show="item.nome !== ''">
-		            				<div class="col-xs-12" data-ng-show="item.tempo && item.config.inicio !== 0">
-										<i class="fa fa-spinner fa-spin"></i>
-									</div>
-		        				</td>
-		            		</tr>
-		            	</table>
+                		
+						<div data-ng-include="'html/resultado.html'"></div>
+
+						<div data-ng-show="mostrarHistorico">
+							<div data-ng-include="'html/historico.html'"></div>
+						</div>
                 	</div>
                     <div class="col-xs-6">
 			            <div class="input-group btn-container">
@@ -112,13 +46,12 @@
 			                <input id="file-selected" type="text" class="form-control" readonly="">
 			            </div>
 			            <div class="video">
-							<video controls autoplay></video>
+							<video id="video" controls></video>
 			            </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
 
     </div>
     <!-- /#wrapper -->
@@ -127,14 +60,7 @@
 	<script src="bower_components/bootstrap/dist/bootstrap.min.js"></script>
 	<script src="js/angular.js"></script>
 
+	<script src="js/app.js"></script>
 	<script src="js/index.js"></script>
-	<script src="js/video.js"></script>
-
-	<script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 </body>
 </html>

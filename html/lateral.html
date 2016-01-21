@@ -1,0 +1,43 @@
+<div id="sidebar-wrapper" class="container-fluid">
+	<h1>Configurações</h1>
+    <div class="row">
+    	<table class="table">
+    		<tr>
+    			<th class="col-xs-4">Evento</th>
+    			<th class="col-xs-1">Tempo</th>
+    			<th class="col-xs-2">Tecla</th>
+    		</tr>
+    		<tr data-ng-repeat="item in eventos">
+    			<td>
+    				<input type="text" data-ng-model="item.nome">
+				</td>
+				<td>
+    				<input type="checkbox" data-ng-model="item.tempo">
+				</td>
+				<td>
+					<div data-ng-show="item.tempo">
+        				<div class="col-xs-6">
+							<label>Iniciar</label><br>
+							<input type="text" data-ng-model="item.config.tecla">
+						</div>
+
+						<div class="col-xs-6">
+							<label>Parar</label><br>
+							<input type="text" data-ng-model="item.config.teclaFim">
+						</div>
+					</div>
+					<div data-ng-hide="item.tempo">
+						<div class="col-xs-12">
+							<input type="text" data-ng-model="item.config.tecla"><br>
+						</div>
+					</div>
+				</td>
+    		</tr>
+    	</table>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<button class="btn btn-primary" data-ng-click="adicionar()">Adicionar novo</button>
+		</div>
+	</div>
+</div>

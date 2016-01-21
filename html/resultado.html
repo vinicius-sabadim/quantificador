@@ -1,0 +1,34 @@
+<table class="table table-padding">
+	<tr>
+		<th class="col-xs-4">Evento</th>
+		<th class="col-xs-2">Tecla</th>
+		<th class="col-xs-4">Resultado</th>
+		<th class="col-xs-2"></th>
+	</tr>
+	<tr data-ng-repeat="item in eventos">
+		<td data-ng-show="item.nome !== ''">
+			{{ item.nome }}
+		</td>
+		<td data-ng-show="item.nome !== ''">
+			<div data-ng-show="item.tempo">
+				{{ item.config.tecla }} / {{ item.config.teclaFim }}
+			</div>
+			<div data-ng-hide="item.tempo">
+				{{ item.config.tecla }}
+			</div>
+		</td>
+		<td data-ng-show="item.nome !== ''">
+			<div class="col-xs-12" data-ng-show="item.tempo">
+				{{ item.config.duracao | number:2 }} segundo(s)
+			</div>
+			<div class="col-xs-12" data-ng-hide="item.tempo">
+				{{ item.config.contador }}
+			</div>
+		</td>
+		<td data-ng-show="item.nome !== ''">
+			<div class="col-xs-12" data-ng-show="item.tempo && item.config.inicio !== 0">
+				<i class="fa fa-spinner fa-spin"></i>
+			</div>
+		</td>
+	</tr>
+</table>
