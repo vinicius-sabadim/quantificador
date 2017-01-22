@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Quantificação</title>
 
-	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
 	<link rel="stylesheet" href="css/app.css">
 </head>
 <body data-ng-controller="PrincipalController" data-ng-keydown="tratarTecla($event)">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="row" data-ng-show="mostrarTela">
                 	<div class="col-xs-6">
-                		
+
 						<div data-ng-include="'html/resultado.html'"></div>
 
 						<div data-ng-show="mostrarHistorico">
@@ -56,9 +56,9 @@
     </div>
     <!-- /#wrapper -->
 
-	<script src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="bower_components/bootstrap/dist/bootstrap.min.js"></script>
-	<script src="js/angular.js"></script>
+	<script src="js/libs/jquery.js"></script>
+	<script src="js/libs/bootstrap.js"></script>
+	<script src="js/libs/angular.js"></script>
 
 	<script src="js/app.js"></script>
 	<script src="js/index.js"></script>
