@@ -12,22 +12,22 @@
 		</td>
 		<td data-ng-show="item.nome !== ''">
 			<div data-ng-show="item.tempo">
-				{{ item.config.tecla }} / {{ item.config.teclaFim }}
+				{{ item.tecla }} / {{ item.teclaFim }}
 			</div>
 			<div data-ng-hide="item.tempo">
-				{{ item.config.tecla }}
+				{{ item.tecla }}
 			</div>
 		</td>
 		<td data-ng-show="item.nome !== ''">
 			<div class="col-xs-12" data-ng-show="item.tempo">
-				{{ item.config.duracao | number:2 }} segundo(s)
+				{{ item.duracao | number:2 }} segundo(s)
 			</div>
 			<div class="col-xs-12" data-ng-hide="item.tempo">
-				{{ item.config.contador }}
+				{{ item.contador }}
 			</div>
 		</td>
 		<td data-ng-show="item.nome !== ''">
-			<div class="col-xs-12" data-ng-show="item.tempo && item.config.inicio !== 0">
+			<div class="col-xs-12" data-ng-show="item.tempo && item.inicio !== 0">
 				<i class="fa fa-spinner fa-spin"></i>
 			</div>
 		</td>

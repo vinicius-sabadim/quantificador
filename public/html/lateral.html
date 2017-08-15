@@ -1,6 +1,6 @@
 <div id="sidebar-wrapper" class="container-fluid">
 	<h1>Configurações</h1>
-    <div class="row">
+    <div class="row" data-ng-show="eventos.length > 0">
     	<table class="table">
     		<tr>
     			<th class="col-xs-4">Evento</th>
@@ -18,17 +18,17 @@
 					<div data-ng-show="item.tempo">
         				<div class="col-xs-6">
 							<label>Iniciar</label><br>
-							<input type="text" data-ng-model="item.config.tecla">
+							<input type="text" data-ng-model="item.tecla">
 						</div>
 
 						<div class="col-xs-6">
 							<label>Parar</label><br>
-							<input type="text" data-ng-model="item.config.teclaFim">
+							<input type="text" data-ng-model="item.teclaFim">
 						</div>
 					</div>
 					<div data-ng-hide="item.tempo">
 						<div class="col-xs-12">
-							<input type="text" data-ng-model="item.config.tecla"><br>
+							<input type="text" data-ng-model="item.tecla"><br>
 						</div>
 					</div>
 				</td>
@@ -38,6 +38,12 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<button class="btn btn-primary" data-ng-click="adicionar()">Adicionar novo</button>
+		</div>
+	</div>
+	<div class="row buttons-container">
+		<div class="col-xs-12">
+			<button class="btn btn-success" data-ng-click="salvar()">Salvar configuração</button>
+			<button class="btn btn-danger" data-ng-click="limpar()">Limpar configuração</button>
 		</div>
 	</div>
 </div>

@@ -18,14 +18,19 @@
         <!-- Conteúdo -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-            	<div class="btn-container">
-                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" data-ng-click="toggleBotao()">
-                    	<span data-ng-bind="textoBotao"></span> as configurações
-                    </a>
-
-                    <button data-ng-show="mostrarTela" class="btn btn-primary" data-ng-click="toggleHistorico()">
-                    	Histórico
-                    </button>
+            	<div class="row btn-container">
+                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" data-ng-click="toggleBotao()">
+                	<span data-ng-bind="textoBotao"></span>
+                </a>
+            	</div>
+            	<div class="row">
+            		<button data-ng-show="mostrarTela" class="btn btn-primary" data-ng-click="toggleHistorico()">
+                	Histórico
+                </button>
+                <button data-ng-show="mostrarTela" class="btn btn-danger" data-ng-click="limparHistorico()">
+                	Limpar histórico
+                </button>
+            	</div>
                 </div>
                 <div class="row" data-ng-show="mostrarTela">
                 	<div class="col-xs-6">
