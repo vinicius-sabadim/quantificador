@@ -1,23 +1,14 @@
 {
   "name": "quantificador",
   "version": "1.0.0",
-  "description": "`http-server -a localhost -p 8000`",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vinicius-sabadim/quantificador.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vinicius-sabadim/quantificador/issues"
-  },
-  "homepage": "https://github.com/vinicius-sabadim/quantificador#readme",
   "dependencies": {
     "express": "^4.14.0"
   }
