@@ -1,99 +1,100 @@
-.btn-container {
-    margin-bottom: 20px;
-}
-.btn-file {
-    position: relative;
-    overflow: hidden;
-}
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    background: red;
-    cursor: inherit;
-    display: block;
-}
-input[readonly] {
-    background-color: white !important;
-    cursor: text !important;
+* {
+	box-sizing: border-box;
+	font-family: 'Arial';
+	padding: 0;
+	margin: 0;
 }
 
-input[type=checkbox] {
-  width: auto !important;
+body {
+	padding: 20px;
 }
 
-.buttons-container {
-  border-top: 1px solid #DDDDDD;
-  margin-top: 20px;
-  padding-top: 20px;
-}
-
-.video {
-    width: 100%;
-}
-.video video {
-    width: 100%;
-}
-.table > tbody > tr > td {
-    text-align: center;
-    vertical-align: middle;
-}
-.table.table-padding > tbody > tr > td {
-    line-height: 3;
-}
-.table input {
-    padding: 5px;
-    text-align: center;
-    width: 100%;
-}
-th {
-    text-align: center;
-}
-.fa {
-    color: #428bca;
-    font-size: 28px;
-}
 h1 {
-    color: #999;
-    font-size: 22px;
+	color: #4286f4;
+	font-size: 24px;
 }
 
-#page-content-wrapper {
-  padding: 15px;
-  padding-left: 71%;
-  width: 29%;
+.settings {
+	border-bottom: 1px solid #CCCCCC;
 }
 
-.toggled #page-content-wrapper {
-  padding-left: 15px;
-  width: 100%;
+table {
+	border-collapse: collapse;
+	margin: 20px 0;
+	width: 100%;
 }
 
-#sidebar-wrapper {
-  background: #f5f5f5;
-  border-right: 1px solid #ccc;
-  height: 100%;
-  left: 0;
-  position: fixed;
-  width: 70%;
+table tr th {
+	padding-bottom: 10px;
+	text-align: left;
 }
 
-.toggled #sidebar-wrapper {
-  display: none
+.column__time {
+	text-align: center;
+	width: 80px;
 }
 
-/* Sidebar Styles */
-.sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 40%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.column__key {
+	text-align: center;
+	width: 50px;
+}
+
+.column__buttons {
+	display: flex;
+	justify-content: space-between;
+	width: 110px;
+}
+
+table tr:nth-child(even) td {
+	background-color: #EEEEEE;
+}
+
+table tr td {
+	padding: 10px;
+	text-align: left;
+	vertical-align: bottom;
+}
+
+input {
+	border: 1px solid #CCCCCC;
+	font-family: 'Arial';
+	font-size: 16px;
+	padding: 5px;
+}
+
+input[type="text"] {
+	width: 100%;
+}
+
+button {
+	border-radius: 5px;
+	font-size: 16px;
+	padding: 10px;
+}
+
+.button__add {
+	background-color: #4286f4;
+	color: #FFFFFF;
+	margin-bottom: 20px;
+}
+
+.button__save {
+	background-color: #FFFFFF;
+	border: 1px solid #4286f4;
+	color: #4286f4;
+	margin-bottom: 20px;
+	margin-right: 10px;
+}
+
+.button__clear {
+	background-color: #FFFFFF;
+	border: 1px solid #BBBBBB;
+	color: #BBBBBB;
+	margin-bottom: 20px;
+}
+
+.button__start {
+	background-color: #4286f4;
+	color: #FFFFFF;
+	margin: 20px 0;
 }

@@ -1,28 +1,28 @@
-<div>
+<div class="settings">
 	<h1>Settings</h1>
 
 	<div data-ng-show="events.length > 0">
 		<table>
 			<tr>
 				<th>Event</th>
-				<th>Time</th>
-				<th>Key</th>
+				<th class="column__time">Time</th>
+				<th class="column__key">Key</th>
 			</tr>
 			<tr data-ng-repeat="item in events">
 				<td><input type="text" data-ng-model="item.name"></td>
-				<td><input type="checkbox" data-ng-model="item.time"></td>
+				<td class="column__time"><input type="checkbox" data-ng-model="item.time"></td>
 				<td>
-					<div data-ng-show="item.time">
-						<div>
-							<label>Start key</label><br>
+					<div class="column__buttons" data-ng-show="item.time">
+						<div class="column__key">
+							<label>Start</label><br>
 							<input type="text" data-ng-model="item.key">
 						</div>
-						<div>
-							<label>Finish key</label><br>
+						<div class="column__key">
+							<label>Finish</label><br>
 							<input type="text" data-ng-model="item.endKey">
 						</div>
 					</div>
-					<div data-ng-hide="item.time">
+					<div class="column__key" data-ng-hide="item.time">
 						<input type="text" data-ng-model="item.key"><br>
 					</div>
 				</td>
@@ -30,10 +30,10 @@
 		</table>
 	</div>
 
-	<button data-ng-click="addEvent()">Add new event</button>
+	<button class="button__add" data-ng-click="addEvent()">Add new event</button>
 
 	<div>
-		<button data-ng-click="saveEvents()">Save settings</button>
-		<button data-ng-click="clearEvents()">Clear settings</button>
+		<button class="button__save" data-ng-click="saveEvents()">Save settings</button>
+		<button class="button__clear" data-ng-click="clearEvents()">Clear settings</button>
 	</div>
 </div
