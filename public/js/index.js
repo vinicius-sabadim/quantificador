@@ -65,7 +65,7 @@
 			item = item[0]
 
 			const { nome, tempo } = item
-			const posicao = document.getElementById('video').currentTime
+			// const posicao = document.getElementById('video').currentTime
 
 			if (tempo) {
 				const primeiraTecla = item.tecla.toUpperCase()
@@ -75,7 +75,7 @@
 					item.inicio = new Date()
 					$scope.historico.push({
 						nome,
-						posicao,
+						// posicao,
 						icone: 'fa-play'
 					})
 				} else if ((segundaTecla === tecla) && (item.inicio !== 0)) {
@@ -83,7 +83,7 @@
 					item.inicio = 0
 					$scope.historico.push({
 						nome,
-						posicao,
+						// posicao,
 						icone: 'fa-stop'
 					})
 				}
