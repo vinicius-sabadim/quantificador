@@ -50,6 +50,7 @@ table tr:nth-child(even) td {
 }
 
 table tr td {
+	height: 51px;
 	padding: 10px;
 	text-align: left;
 	vertical-align: bottom;
@@ -97,4 +98,9 @@ button {
 	background-color: #4286f4;
 	color: #FFFFFF;
 	margin: 20px 0;
+}
+
+.icon {
+	color: #4286f4;
+	font-size: 22px;
 }
