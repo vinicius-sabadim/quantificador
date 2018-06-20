@@ -2,54 +2,18 @@
 <html lang="pt-br" data-ng-app="app">
 <head>
 	<meta charset="UTF-8">
-	<title>Quantificador</title>
+	<title>Quantifier</title>
 
-	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/font-awesome.css">
 	<link rel="stylesheet" href="css/app.css">
 </head>
-<body data-ng-controller="PrincipalController" data-ng-keydown="tratarTecla($event)">
 
-	<div id="wrapper">
-
-        <!-- Lateral -->
-        <div data-ng-include="'html/lateral.html'"></div>
-
-        <!-- Conteúdo -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-            	<div class="row btn-container">
-                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" data-ng-click="toggleBotao()">
-                	<span data-ng-bind="textoBotao"></span>
-                </a>
-            	</div>
-            	<div class="row">
-            		<button data-ng-show="mostrarTela" class="btn btn-primary" data-ng-click="toggleHistorico()">
-                	Histórico
-                </button>
-                <button data-ng-show="mostrarTela" class="btn btn-danger" data-ng-click="limparHistorico()">
-                	Limpar histórico
-                </button>
-            	</div>
-                </div>
-                <div class="row" data-ng-show="mostrarTela">
-                	<div class="col-xs-6">
-
-						<div data-ng-include="'html/resultado.html'"></div>
-
-						<div data-ng-show="mostrarHistorico">
-							<div data-ng-include="'html/historico.html'"></div>
-						</div>
-                	</div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <!-- /#wrapper -->
+<body data-ng-controller="MainController" data-ng-keydown="handleKey($event)">
+	<div data-ng-include="'html/settings.html'"></div>
+	<button data-ng-click="toggleStartQuantify()" data-ng-bind="quantifyButtonText"></button>
+	<div data-ng-show="isQuantifying" data-ng-include="'html/interactions.html'"></div>
 
 	<script src="js/libs/jquery.js"></script>
-	<script src="js/libs/bootstrap.js"></script>
 	<script src="js/libs/angular.js"></script>
 
 	<script src="js/app.js"></script>

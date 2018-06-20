@@ -1,0 +1,33 @@
+<h1>Interactions</h1>
+<table>
+	<tr>
+		<th class="col-xs-4">Event</th>
+		<th class="col-xs-2">Key</th>
+		<th class="col-xs-4">Resul</th>
+		<th class="col-xs-2"></th>
+	</tr>
+	<tr data-ng-repeat="item in events">
+		<td data-ng-show="item.name !== ''" data-ng-bind="item.name"></td>
+		<td data-ng-show="item.name !== ''">
+			<div data-ng-show="item.time">
+				{{ item.key }} / {{ item.endKey }}
+			</div>
+			<div data-ng-hide="item.time">
+				{{ item.key }}
+			</div>
+		</td>
+		<td data-ng-show="item.name !== ''">
+			<div data-ng-show="item.time">
+				{{ item.duration | number:2 }} second(s)
+			</div>
+			<div data-ng-hide="item.time">
+				{{ item.count }}
+			</div>
+		</td>
+		<td data-ng-show="item.name !== ''">
+			<div data-ng-show="item.time && item.start !== 0">
+				<i class="fa fa-spinner fa-spin"></i>
+			</div>
+		</td>
+	</tr>
+</table>

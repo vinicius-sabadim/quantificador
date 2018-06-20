@@ -1,182 +1,90 @@
 (function() {
-
 	angular
 		.module('app')
-		.controller('PrincipalController', PrincipalController)
+		.controller('MainController', MainController)
 
-	PrincipalController.$inject = ['$scope'];
+	MainController.$inject = ['$scope']
 
-	function PrincipalController($scope) {
-
-		const Evento = {
-			tempo: false,
-			contador: 0,
-			inicio: 0,
-			duracao: 0,
-			tecla: '',
-			teclaFim: ''
+	function MainController($scope) {
+		const defaultEvent = {
+			count: 0,
+			duration: 0,
+			endKey: '',
+			key: '',
+			name: '',
+			start: 0,
+			time: false
 		}
 
-		const formatarHorario = (posicao) => {
-
-			if (posicao === 0) {
-				return '0:00'
-			}
-
-			posicao = (posicao / 60).toFixed(3)
-			posicao = String(posicao)
-			tempo = (posicao.split('.'))
-			minutos = tempo[0]
-			segundos = tempo[1]
-			segundos = parseInt(segundos)
-			segundos = (segundos * 60) / 1000
-			segundos = Math.round(segundos)
-
-			if (segundos < 10) {
-				segundos = '0' + segundos
-			}
-
-			return minutos + ':' + segundos
+		const toggleStartQuantify = () => {
+			const { isQuantifying } = $scope
+			$scope.isQuantifying = !isQuantifying
+			$scope.quantifyButtonText = isQuantifying ? 'Start to quantify' : 'Stop to quantify'
 		}
 
-		const toggleBotao = () => {
-			const { mostrarTela } = $scope
-			$scope.mostrarTela = !mostrarTela
-			$scope.textoBotao = !mostrarTela ? 'Mostrar as configurações' : 'Ocultar'
-		}
+		const handleKey = (keyEvent) => {
+			if (!$scope.isQuantifying) return false
 
-		const toggleHistorico = () => {
-			$scope.mostrarHistorico = !$scope.mostrarHistorico
-		}
-
-		const tratarTecla = (keyEvent) => {
 			const { keyCode } = keyEvent
 			if (keyCode >= 65 && keyCode <= 90) {
-				quantificar(String.fromCharCode(keyCode))
+				includeNewInteraction(String.fromCharCode(keyCode))
 			}
 		}
 
-		const quantificar = (tecla) => {
-			let item = getItem(tecla)
+		const includeNewInteraction = (key) => {
+			const item = getEvent(key)
+			if (!item) return
 
-			if (item.length === 0) return
-			if (!$scope.mostrarTela) return
+			const { name, time } = item
 
-			item = item[0]
+			if (!time) return item.count = item.count + 1
 
-			const { nome, tempo } = item
-			// const posicao = document.getElementById('video').currentTime
-
-			if (tempo) {
-				const primeiraTecla = item.tecla.toUpperCase()
-				const segundaTecla = item.teclaFim.toUpperCase()
-
-				if ((primeiraTecla === tecla) && (item.inicio === 0)) {
-					item.inicio = new Date()
-					$scope.historico.push({
-						nome,
-						// posicao,
-						icone: 'fa-play'
-					})
-				} else if ((segundaTecla === tecla) && (item.inicio !== 0)) {
-					item.duracao += (new Date() - item.inicio) / 1000
-					item.inicio = 0
-					$scope.historico.push({
-						nome,
-						// posicao,
-						icone: 'fa-stop'
-					})
-				}
-			} else {
-				item.contador += 1
-				$scope.historico.push({
-					nome,
-					icone: 'fa-plus'
-				})
+			const firstKey = item.key.toUpperCase()
+			const secondKey = item.endKey.toUpperCase()
+			if ((firstKey === key) && (item.start === 0)) {
+				item.start = new Date()
+			} else if ((secondKey === key) && (item.start !== 0)) {
+				item.duration += (new Date() - item.start) / 1000
+				item.start = 0
 			}
 		}
 
-		const getItem = (tecla) => {
-			return $scope.eventos.filter((item) => {
-				return item.tecla.toUpperCase() === tecla || item.teclaFim.toUpperCase() === tecla
+		const getEvent = (key) => {
+			const found = $scope.events.filter((item) => {
+				return item.key.toUpperCase() === key || item.endKey.toUpperCase() === key
 			})
+			return found.length > 0 ? found[0] : null
 		}
 
-		const adicionar = () => {
-			$scope.eventos.push({
-				...Evento,
-				nome: 'Novo evento'
-			})
+		const addEvent = () => {
+			$scope.events.push(defaultEvent)
 		}
 
-		const salvar = () => {
-			const eventos = JSON.stringify($scope.eventos)
-			window.localStorage.setItem('eventos', eventos)
+		const saveEvents = () => {
+			const events = JSON.stringify($scope.events)
+			window.localStorage.setItem('events', events)
 		}
 
-		const limpar = () => {
+		const clearEvents = () => {
 			window.localStorage.clear()
 		}
 
-		const limparHistorico = () => {
-			$scope.historico = []
-			$scope.eventos.forEach((item) => {
-				item.contador = 0
-				item.duracao = 0
-			})
-		}
+		$scope.handleKey = handleKey
+		$scope.toggleStartQuantify = toggleStartQuantify
 
-		$scope.tratarTecla = tratarTecla
-		$scope.adicionar = adicionar
-		$scope.salvar = salvar
-		$scope.limpar = limpar
-		$scope.limparHistorico = limparHistorico
-		$scope.toggleBotao = toggleBotao
-		$scope.toggleHistorico = toggleHistorico
-
+		$scope.addEvent = addEvent
+		$scope.saveEvents = saveEvents
+		$scope.clearEvents = clearEvents
+		
 		const init = () => {
-			$scope.textoBotao = 'Ocultar'
-			$scope.mostrarTela = false
-			$scope.mostrarHistorico = false
-			$scope.historico = []
-			const eventos = JSON.parse(window.localStorage.getItem('eventos'))
-			$scope.eventos = eventos || []
+			$scope.quantifyButtonText = 'Start to quantify'
+
+			// Check localstorage
+			const events = JSON.parse(window.localStorage.getItem('events'))
+			$scope.events = events || []
 		}
 
 		init()
 	}
 
-}());
-
-(function() {
-	$("#menu-toggle").click(function(e) {
-		e.preventDefault();
-		$("#wrapper").toggleClass("toggled");
-	});
-}());
-
-(function localFileVideoPlayerInit(win) {
-	$('#file-selected').val('');
-	var URL = win.URL || win.webkitURL;
-
-	var playSelectedFile = function playSelectedFileInit(event) {
-		var file = this.files[0];
-		var type = file.type;
-		var videoNode = document.querySelector('video');
-		var fileURL = URL.createObjectURL(file);
-		videoNode.src = fileURL;
-		$('#file-selected').val(file.name);
-	};
-
-	var inputNode = document.getElementById('file');
-	inputNode.addEventListener('change', playSelectedFile, false);
-}(window));
-
-(function() {
-	$(document).on('change', '.btn-file :file', function() {
-		var input = $(this),
-			numFiles = input.get(0).files ? input.get(0).files.length : 1,
-			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-		input.trigger('fileselect', [numFiles, label]);
-	});
-}());
+}())

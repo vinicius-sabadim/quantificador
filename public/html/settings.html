@@ -1,0 +1,39 @@
+<div>
+	<h1>Settings</h1>
+
+	<div data-ng-show="events.length > 0">
+		<table>
+			<tr>
+				<th>Event</th>
+				<th>Time</th>
+				<th>Key</th>
+			</tr>
+			<tr data-ng-repeat="item in events">
+				<td><input type="text" data-ng-model="item.name"></td>
+				<td><input type="checkbox" data-ng-model="item.time"></td>
+				<td>
+					<div data-ng-show="item.time">
+						<div>
+							<label>Start key</label><br>
+							<input type="text" data-ng-model="item.key">
+						</div>
+						<div>
+							<label>Finish key</label><br>
+							<input type="text" data-ng-model="item.endKey">
+						</div>
+					</div>
+					<div data-ng-hide="item.time">
+						<input type="text" data-ng-model="item.key"><br>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<button data-ng-click="addEvent()">Add new event</button>
+
+	<div>
+		<button data-ng-click="saveEvents()">Save settings</button>
+		<button data-ng-click="clearEvents()">Clear settings</button>
+	</div>
+</div
