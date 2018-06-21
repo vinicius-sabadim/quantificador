@@ -74,6 +74,10 @@ button {
 	padding: 10px;
 }
 
+button:focus {
+	outline: none;
+}
+
 .button__add {
 	background-color: #4286f4;
 	color: #FFFFFF;
@@ -88,17 +92,15 @@ button {
 	margin-right: 10px;
 }
 
-.button__clear {
-	background-color: #FFFFFF;
-	border: 1px solid #BBBBBB;
-	color: #BBBBBB;
-	margin-bottom: 20px;
-}
-
 .button__start {
 	background-color: #4286f4;
 	color: #FFFFFF;
-	margin: 20px 0;
+	margin: 20px 10px 20px 0;
+}
+
+.button__clear {
+	background-color: #FFFFFF;
+	color: #AAAAAA;
 }
 
 .icon {

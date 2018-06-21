@@ -6,12 +6,13 @@
 	MainController.$inject = ['$scope']
 
 	function MainController($scope) {
+		let eventNum = 1
+
 		const defaultEvent = {
 			count: 0,
 			duration: 0,
 			endKey: '',
 			key: '',
-			name: '',
 			start: 0,
 			time: false
 		}
@@ -56,28 +57,32 @@
 			return found.length > 0 ? found[0] : null
 		}
 
+		const clear = () => {
+			$scope.events = $scope.events.map((event) => ({
+				...event, count: 0, duration: 0
+			}))
+		}
+
 		const addEvent = () => {
-			$scope.events.push(defaultEvent)
+			$scope.events.push({ ...defaultEvent, name: `Event ${ eventNum++ }` })
 		}
 
 		const saveEvents = () => {
-			const events = JSON.stringify($scope.events)
+			const events = JSON.stringify($scope.events.filter((item) => item.name !== ''))
 			window.localStorage.setItem('events', events)
+			$scope.showSaved = true
 		}
 
-		const clearEvents = () => {
-			window.localStorage.clear()
-		}
-
+		$scope.clear = clear
 		$scope.handleKey = handleKey
 		$scope.toggleStartQuantify = toggleStartQuantify
 
 		$scope.addEvent = addEvent
 		$scope.saveEvents = saveEvents
-		$scope.clearEvents = clearEvents
 		
 		const init = () => {
 			$scope.quantifyButtonText = 'Start to quantify'
+			$scope.showSaved = false
 
 			// Check localstorage
 			const events = JSON.parse(window.localStorage.getItem('events'))

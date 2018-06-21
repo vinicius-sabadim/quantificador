@@ -12,6 +12,7 @@
 <body data-ng-controller="MainController" data-ng-keydown="handleKey($event)">
 	<div data-ng-include="'html/settings.html'"></div>
 	<button class="button__start" data-ng-click="toggleStartQuantify()" data-ng-bind="quantifyButtonText"></button>
+	<button class="button__clear" data-ng-click="clear()">Clear results</button>
 	<div data-ng-show="isQuantifying" data-ng-include="'html/interactions.html'"></div>
 
 	<script src="js/libs/jquery.js"></script>
